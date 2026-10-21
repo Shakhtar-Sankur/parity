@@ -21,12 +21,12 @@ Rules the benchmark keeps:
 
 ## Status
 
-Early. Milestone M0 is in progress.
+Milestone M0 is complete; M1 is next.
 
 | Milestone | Scope | Status |
 |---|---|---|
-| M0 | Reproduce PyMatching 2 / Sparse Blossom ([Higgott & Gidney, arXiv:2303.15933](https://arxiv.org/abs/2303.15933)): speed at d=17, p=0.1%; logical error rates and threshold for the rotated surface code | in progress |
-| M1 | Independent check of a recent neural pre-decoder claim against PyMatching on identical inputs | planned |
+| M0 | Reproduce PyMatching 2 / Sparse Blossom ([Higgott & Gidney, arXiv:2303.15933](https://arxiv.org/abs/2303.15933)): speed at d=17, p=0.1%; logical error rates and threshold for the rotated surface code | done: scaling reproduced; threshold crossings measured; absolute speed needs comparable hardware |
+| M1 | Independent check of NVIDIA's Ising pre-decoders ([arXiv:2604.12841](https://arxiv.org/abs/2604.12841)): logical error rate and latency of pre-decoder + PyMatching against uncorrelated and correlated PyMatching alone, on identical Stim samples | next |
 | M2 | Suite: surface, colour and qLDPC codes; PyMatching, Union-Find, Fusion Blossom, BP-OSD, Chromobius and others; public leaderboard with submissions by pull request | planned |
 
 ## M0: Sparse Blossom speed
