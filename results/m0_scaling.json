@@ -1,0 +1,305 @@
+{
+  "source": "Higgott & Gidney, Sparse Blossom, arXiv:2303.15933, Section 6",
+  "protocol": "rounds = d, X basis, decode time only, bit-packed batches, one thread",
+  "by_p": {
+    "0.001": {
+      "points": [
+        {
+          "distance": 5,
+          "detectors": 120,
+          "shots": 100000,
+          "us_per_round": 0.11367009800051164,
+          "seconds_per_shot": 5.683504900025583e-07,
+          "logical_error_rate": 0.00016,
+          "mean_detection_events_per_shot": 1.78833
+        },
+        {
+          "distance": 7,
+          "detectors": 336,
+          "shots": 100000,
+          "us_per_round": 0.26310246143111726,
+          "seconds_per_shot": 1.8417172300178208e-06,
+          "logical_error_rate": 2e-05,
+          "mean_detection_events_per_shot": 5.39523
+        },
+        {
+          "distance": 9,
+          "detectors": 720,
+          "shots": 100000,
+          "us_per_round": 0.4750514388888405,
+          "seconds_per_shot": 4.275462949999564e-06,
+          "logical_error_rate": 0.0,
+          "mean_detection_events_per_shot": 12.0455
+        },
+        {
+          "distance": 11,
+          "detectors": 1320,
+          "shots": 100000,
+          "us_per_round": 0.7449700927273543,
+          "seconds_per_shot": 8.194671020000896e-06,
+          "logical_error_rate": 0.0,
+          "mean_detection_events_per_shot": 22.66081
+        },
+        {
+          "distance": 13,
+          "detectors": 2184,
+          "shots": 100000,
+          "us_per_round": 1.139309766153579,
+          "seconds_per_shot": 1.4811026959996524e-05,
+          "logical_error_rate": 0.0,
+          "mean_detection_events_per_shot": 38.24862
+        },
+        {
+          "distance": 15,
+          "detectors": 3360,
+          "shots": 100000,
+          "us_per_round": 1.551187468666588,
+          "seconds_per_shot": 2.326781202999882e-05,
+          "logical_error_rate": 0.0,
+          "mean_detection_events_per_shot": 59.56656
+        },
+        {
+          "distance": 17,
+          "detectors": 4896,
+          "shots": 100000,
+          "us_per_round": 2.0315256052938766,
+          "seconds_per_shot": 3.4535935289995904e-05,
+          "logical_error_rate": 0.0,
+          "mean_detection_events_per_shot": 87.60282
+        },
+        {
+          "distance": 21,
+          "detectors": 9240,
+          "shots": 100000,
+          "us_per_round": 3.985956478094782,
+          "seconds_per_shot": 8.370508603999043e-05,
+          "logical_error_rate": 0.0,
+          "mean_detection_events_per_shot": 167.91939
+        },
+        {
+          "distance": 25,
+          "detectors": 15600,
+          "shots": 100000,
+          "us_per_round": 7.703743057199608,
+          "seconds_per_shot": 0.0001925935764299902,
+          "logical_error_rate": 0.0,
+          "mean_detection_events_per_shot": 286.38836
+        },
+        {
+          "distance": 29,
+          "detectors": 24360,
+          "shots": 100000,
+          "us_per_round": 12.510906193447854,
+          "seconds_per_shot": 0.00036281627960998774,
+          "logical_error_rate": 0.0,
+          "mean_detection_events_per_shot": 450.59489
+        }
+      ],
+      "exponent_vs_detectors": 1.1965310569959557
+    },
+    "0.005": {
+      "points": [
+        {
+          "distance": 5,
+          "detectors": 120,
+          "shots": 20000,
+          "us_per_round": 0.6262746399988828,
+          "seconds_per_shot": 3.131373199994414e-06,
+          "logical_error_rate": 0.01465,
+          "mean_detection_events_per_shot": 8.39945
+        },
+        {
+          "distance": 7,
+          "detectors": 336,
+          "shots": 20000,
+          "us_per_round": 1.584049914293116,
+          "seconds_per_shot": 1.1088349400051812e-05,
+          "logical_error_rate": 0.01365,
+          "mean_detection_events_per_shot": 25.35315
+        },
+        {
+          "distance": 9,
+          "detectors": 720,
+          "shots": 20000,
+          "us_per_round": 3.232541277778485,
+          "seconds_per_shot": 2.909287150000637e-05,
+          "logical_error_rate": 0.0081,
+          "mean_detection_events_per_shot": 56.37185
+        },
+        {
+          "distance": 11,
+          "detectors": 1320,
+          "shots": 20000,
+          "us_per_round": 4.949786595455986,
+          "seconds_per_shot": 5.444765255001584e-05,
+          "logical_error_rate": 0.0063,
+          "mean_detection_events_per_shot": 105.7227
+        },
+        {
+          "distance": 13,
+          "detectors": 2184,
+          "shots": 20000,
+          "us_per_round": 7.767879407692117,
+          "seconds_per_shot": 0.00010098243229999753,
+          "logical_error_rate": 0.0044,
+          "mean_detection_events_per_shot": 178.2732
+        },
+        {
+          "distance": 15,
+          "detectors": 3360,
+          "shots": 20000,
+          "us_per_round": 11.364368116668023,
+          "seconds_per_shot": 0.00017046552175002035,
+          "logical_error_rate": 0.0035,
+          "mean_detection_events_per_shot": 277.3056
+        },
+        {
+          "distance": 17,
+          "detectors": 4896,
+          "shots": 20000,
+          "us_per_round": 16.75050114411747,
+          "seconds_per_shot": 0.00028475851944999704,
+          "logical_error_rate": 0.0017,
+          "mean_detection_events_per_shot": 408.1156
+        },
+        {
+          "distance": 21,
+          "detectors": 9240,
+          "shots": 20000,
+          "us_per_round": 32.65365172857119,
+          "seconds_per_shot": 0.000685726686299995,
+          "logical_error_rate": 0.00095,
+          "mean_detection_events_per_shot": 781.5758
+        },
+        {
+          "distance": 25,
+          "detectors": 15600,
+          "shots": 20000,
+          "us_per_round": 57.77465643999858,
+          "seconds_per_shot": 0.0014443664109999644,
+          "logical_error_rate": 0.00055,
+          "mean_detection_events_per_shot": 1331.06415
+        },
+        {
+          "distance": 29,
+          "detectors": 24360,
+          "shots": 20000,
+          "us_per_round": 96.30536201551688,
+          "seconds_per_shot": 0.0027928554984499895,
+          "logical_error_rate": 0.0001,
+          "mean_detection_events_per_shot": 2093.6095
+        }
+      ],
+      "exponent_vs_detectors": 1.2649207891204186
+    },
+    "0.01": {
+      "points": [
+        {
+          "distance": 5,
+          "detectors": 120,
+          "shots": 10000,
+          "us_per_round": 1.5651312199952372,
+          "seconds_per_shot": 7.825656099976186e-06,
+          "logical_error_rate": 0.0949,
+          "mean_detection_events_per_shot": 15.724
+        },
+        {
+          "distance": 7,
+          "detectors": 336,
+          "shots": 10000,
+          "us_per_round": 4.060155957150918,
+          "seconds_per_shot": 2.8421091700056424e-05,
+          "logical_error_rate": 0.1204,
+          "mean_detection_events_per_shot": 46.7411
+        },
+        {
+          "distance": 9,
+          "detectors": 720,
+          "shots": 10000,
+          "us_per_round": 8.856414722221315,
+          "seconds_per_shot": 7.970773249999183e-05,
+          "logical_error_rate": 0.1509,
+          "mean_detection_events_per_shot": 103.6861
+        },
+        {
+          "distance": 11,
+          "detectors": 1320,
+          "shots": 10000,
+          "us_per_round": 16.774443700003097,
+          "seconds_per_shot": 0.00018451888070003406,
+          "logical_error_rate": 0.1892,
+          "mean_detection_events_per_shot": 194.6474
+        },
+        {
+          "distance": 13,
+          "detectors": 2184,
+          "shots": 10000,
+          "us_per_round": 26.977169130770143,
+          "seconds_per_shot": 0.00035070319870001185,
+          "logical_error_rate": 0.2228,
+          "mean_detection_events_per_shot": 327.2911
+        },
+        {
+          "distance": 15,
+          "detectors": 3360,
+          "shots": 10000,
+          "us_per_round": 38.90887826666585,
+          "seconds_per_shot": 0.0005836331739999878,
+          "logical_error_rate": 0.2527,
+          "mean_detection_events_per_shot": 508.1613
+        },
+        {
+          "distance": 17,
+          "detectors": 4896,
+          "shots": 10000,
+          "us_per_round": 62.15505406470958,
+          "seconds_per_shot": 0.001056635919100063,
+          "logical_error_rate": 0.2913,
+          "mean_detection_events_per_shot": 748.3518
+        },
+        {
+          "distance": 21,
+          "detectors": 9240,
+          "shots": 10000,
+          "us_per_round": 131.29240283333274,
+          "seconds_per_shot": 0.0027571404594999875,
+          "logical_error_rate": 0.3558,
+          "mean_detection_events_per_shot": 1432.9299
+        },
+        {
+          "distance": 25,
+          "detectors": 15600,
+          "shots": 10000,
+          "us_per_round": 223.79029871199964,
+          "seconds_per_shot": 0.005594757467799991,
+          "logical_error_rate": 0.4134,
+          "mean_detection_events_per_shot": 2437.3541
+        },
+        {
+          "distance": 29,
+          "detectors": 24360,
+          "shots": 10000,
+          "us_per_round": 434.3019763379304,
+          "seconds_per_shot": 0.012594757313799982,
+          "logical_error_rate": 0.4615,
+          "mean_detection_events_per_shot": 3832.0633
+        }
+      ],
+      "exponent_vs_detectors": 1.3775432093828222
+    }
+  },
+  "ratio_d29_over_d17_at_p0.001": {
+    "measured": 6.158379771756827,
+    "paper": 5.645161290322581
+  },
+  "versions": {
+    "stim": "1.16.0",
+    "pymatching": "2.4.0",
+    "numpy": "2.4.6",
+    "python": "3.11.15"
+  },
+  "machine": {
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+    "system": "Linux-6.18.44-fc-v139-x86_64-with-glibc2.39"
+  }
+}

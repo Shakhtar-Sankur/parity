@@ -46,9 +46,40 @@ python -m venv .venv && .venv/bin/pip install -r requirements.txt
     --out results/m0_d17_p0.001.json
 ```
 
-Results will be added to [`results/`](results/) with the machine they were measured on. Speed
-depends strongly on the CPU, so a comparison with the paper's number is only meaningful on
-comparable hardware; results on other machines are reported as measured, with that caveat.
+### Results so far
+
+Measured on one core of a 4-core Intel Xeon VM @ 2.80 GHz (Linux), Stim 1.16.0, PyMatching 2.4.0.
+
+**Absolute speed: not reproduced on this machine; the gap is consistent with the hardware.**
+d=17, p=0.1%, rounds=17, one million shots per basis
+([`results/m0_d17_p0.001.json`](results/m0_d17_p0.001.json)):
+
+| | X basis | Z basis | Paper (Apple M1 Max) |
+|---|---|---|---|
+| µs per round | 2.12 | 2.13 | 0.62 (mean) |
+| logical errors | 0 / 1,000,000 | 0 / 1,000,000 | |
+
+This VM is 3.4× slower than the paper's figure. A single core of an M1 Max is considerably faster
+than this virtualised Xeon core, so the absolute number cannot settle the claim either way; it
+needs a run on comparable hardware.
+
+**Scaling: reproduced.** Claims that do not depend on the CPU, checked with
+[`bench/m0_scaling.py`](bench/m0_scaling.py) (X basis, rounds = d, d = 5 to 29;
+[`results/m0_scaling.json`](results/m0_scaling.json)):
+
+| Claim (paper) | Paper | Measured here |
+|---|---|---|
+| Time per round, d=29 ÷ d=17, p=0.1% | 3.5 / 0.62 = 5.6× | 12.51 / 2.03 = 6.2× |
+| Exponent of decode time vs number of detectors, p=1% | 1.32 | 1.38 |
+| Exponent at p=0.5% | "roughly linear" | 1.27 |
+| Exponent at p=0.1% | "roughly linear" | 1.20 |
+
+The fitted exponent is the slope of log(decode time per shot) against log(number of detectors).
+The paper's own two p=0.1% data points (d=17 and d=29) imply an exponent of about 1.4 over that
+range, so "roughly linear" and the 1.20 measured here over d = 5 to 29 are consistent.
+
+Every number above can be regenerated with the commands in this README; the JSON files record
+the seeds, shot counts, library versions and CPU.
 
 ## License
 

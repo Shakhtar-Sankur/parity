@@ -1,0 +1,44 @@
+{
+  "claim": "< 1 us per round in each of the X and Z bases (mean 0.62 us), d=17, p=0.1%, rounds=d, 1M shots, one core of an Apple M1 Max",
+  "source": "Higgott & Gidney, Sparse Blossom, arXiv:2303.15933, Section 6",
+  "distance": 17,
+  "p": 0.001,
+  "rounds": 17,
+  "shots_per_basis": 1000000,
+  "us_per_round": {
+    "x": 2.118697593764837,
+    "z": 2.133379777588101
+  },
+  "per_basis": [
+    {
+      "basis": "x",
+      "detectors": 4896,
+      "shots": 1000000,
+      "decode_seconds": 36.01785909400223,
+      "us_per_round": 2.118697593764837,
+      "logical_errors": 0,
+      "logical_error_rate": 0.0,
+      "mean_detection_events_per_shot": 87.670172
+    },
+    {
+      "basis": "z",
+      "detectors": 4896,
+      "shots": 1000000,
+      "decode_seconds": 36.26745621899772,
+      "us_per_round": 2.133379777588101,
+      "logical_errors": 0,
+      "logical_error_rate": 0.0,
+      "mean_detection_events_per_shot": 87.26742
+    }
+  ],
+  "versions": {
+    "stim": "1.16.0",
+    "pymatching": "2.4.0",
+    "numpy": "2.4.6",
+    "python": "3.11.15"
+  },
+  "machine": {
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+    "system": "Linux-6.18.44-fc-v139-x86_64-with-glibc2.39"
+  }
+}
