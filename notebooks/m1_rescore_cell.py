@@ -3,6 +3,11 @@
 import glob, json, os, re, subprocess, sys, zipfile
 W = "/kaggle/working"
 os.chdir(W)
+missing = [p for p in ("parity", "Ising-Decoding", "decoded") if not os.path.isdir(f"{W}/{p}")]
+if missing:
+    raise SystemExit(f"This session no longer has {missing} (Kaggle clears /kaggle/working when a "
+                     "session ends). Run the main cell, m1_ising_kaggle_single_cell.py, instead: "
+                     "it already includes the corrected scoring.")
 subprocess.run("git -C parity pull -q", shell=True, check=True)
 print(subprocess.run("git -C parity log -1 --format=%h", shell=True, capture_output=True, text=True).stdout)
 

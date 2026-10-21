@@ -98,6 +98,15 @@ info = {"ising_commit": ISING_COMMIT, "parity_commit": PARITY_COMMIT, "distances
         "cpu": sh("lscpu | grep 'Model name'").strip(),
         "pip": sh(f"{sys.executable} -m pip freeze | grep -iE 'torch|stim|pymatching|numpy|ldpc|beliefmatching'")}
 json.dump(info, open(f"{W}/results/m1_provenance.json", "w"), indent=2)
+
+# NVIDIA's own logged LER for each run: the independent check on the Ising + PyMatching numbers.
+import re
+pattern = re.compile(r"(logical error ra\w+[^\n]*|\[Inference Summary\][^\n]*)", re.IGNORECASE)
+nvidia = {os.path.basename(log): pattern.findall(open(log, errors="replace").read())[-12:]
+          for log in sorted(glob.glob(f"{W}/logs/d*_inference.log"))}
+json.dump(nvidia, open(f"{W}/results/m1_nvidia_logged_ler.json", "w"), indent=2)
+for name, lines in nvidia.items():
+    print(name); print("\n".join(lines))
 import zipfile
 with zipfile.ZipFile(f"{W}/parity_m1_results.zip", "w", zipfile.ZIP_DEFLATED) as z:
     for f in glob.glob(f"{W}/results/*") + glob.glob(f"{W}/logs/*"):
