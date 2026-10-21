@@ -78,6 +78,26 @@ The fitted exponent is the slope of log(decode time per shot) against log(number
 The paper's own two p=0.1% data points (d=17 and d=29) imply an exponent of about 1.4 over that
 range, so "roughly linear" and the 1.20 measured here over d = 5 to 29 are consistent.
 
+**Threshold: measured.** Logical error rate against physical error rate for d = 3 to 11,
+rounds = d, both bases, up to 1,000 logical errors or one million shots per point, sampled and
+decoded with sinter ([`bench/m0_threshold.py`](bench/m0_threshold.py);
+[`results/m0_threshold.json`](results/m0_threshold.json), 95% intervals included):
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="results/m0_threshold_dark.svg">
+  <img src="results/m0_threshold_light.svg" alt="Logical error rate vs physical error rate for d = 3 to 11 in the X and Z bases; the curves cross near p = 0.7%">
+</picture>
+
+| Pair of distances | 3 / 5 | 5 / 7 | 7 / 9 | 9 / 11 |
+|---|---|---|---|---|
+| Crossing, X basis | 0.61% | 0.71% | 0.67% | 0.69% |
+| Crossing, Z basis | 0.62% | 0.72% | 0.74% | 0.80% |
+
+Below the crossing, each step up in distance suppresses logical errors; above it, larger codes do
+worse. For the larger pairs the crossings sit between 0.67% and 0.80%. The Z-basis crossings still
+drift upward with distance, so a sharper estimate needs larger distances and more shots; this is
+reported as measured, not as a fitted threshold.
+
 Every number above can be regenerated with the commands in this README; the JSON files record
 the seeds, shot counts, library versions and CPU.
 
