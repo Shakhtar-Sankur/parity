@@ -1,0 +1,15 @@
+{
+  "ising_commit": "ea7c1bb3b823fc6a38472d0d95974b6d01932288",
+  "parity_commit": "7871ffcbb363f3dbffdf14024c91aad8b983c6c8",
+  "distances": [
+    5,
+    7,
+    9,
+    11,
+    13
+  ],
+  "shots": 262144,
+  "gpu": "Tesla T4, 580.178.04\nTesla T4, 580.178.04",
+  "cpu": "Model name:                              Intel(R) Xeon(R) CPU @ 2.00GHz",
+  "pip": "beliefmatching==0.2.0\nldpc==2.4.1\nnumpy==2.1.3\nPyMatching==2.4.0\npytorch-ignite==0.5.5\npytorch-lightning==2.6.6\nstim==1.16.0\ntorch==2.11.0+cu128\ntorchao==0.10.0\ntorchaudio==2.11.0+cu128\ntorchcodec==0.11.0+cu128\ntorchdata==0.11.0\ntorchinfo==1.8.0\ntorchmetrics==1.9.0\ntorchsummary==1.5.1\ntorchtune==0.6.1\ntorchvision==0.26.0+cu128\n"
+}

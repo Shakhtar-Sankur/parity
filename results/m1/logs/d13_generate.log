@@ -1,0 +1,42 @@
+==========================================
+Local run
+==========================================
+workflow.task: generate_stim_data
+config: config_public
+GPUS: 1 (CUDA_VISIBLE_DEVICES=0)
+output: /kaggle/working/Ising-Decoding/outputs/parity_d13
+logs: /kaggle/working/Ising-Decoding/logs/parity_d13_20261021_152106
+overrides: hydra.run.dir=/kaggle/working/Ising-Decoding/outputs/parity_d13 distance=13 n_rounds=13
+==========================================
+[generate_stim_data] Writing Stim detector samples to /kaggle/working/Ising-Decoding/outputs/parity_d13/stim_samples for basis=['X', 'Z'], shots=262144
+Building circuit: D=13, T=13, basis=X, rotation=XV, p=0.006
+  Circuit built in 0.013s
+Building detector error model and PyMatching matcher...
+  DEM + matcher built in 0.084s
+  Detectors: 2184, Observables: 1
+Sampling 262144 shots...
+  Sampled in 26.768s
+Decoding with PyMatching (baseline)...
+  Errors: 64/262144, LER: 0.0002
+  Decode time: 12.947s (49.4 µs/shot)
+Writing outputs to /kaggle/working/Ising-Decoding/outputs/parity_d13/stim_samples/
+Done.
+  metadata_X.json                       1,079 bytes
+  samples_X.dets                  157,213,125 bytes
+Building circuit: D=13, T=13, basis=Z, rotation=XV, p=0.006
+  Circuit built in 0.013s
+Building detector error model and PyMatching matcher...
+  DEM + matcher built in 0.081s
+  Detectors: 2184, Observables: 1
+Sampling 262144 shots...
+  Sampled in 27.959s
+Decoding with PyMatching (baseline)...
+  Errors: 56/262144, LER: 0.0002
+  Decode time: 13.323s (50.8 µs/shot)
+Writing outputs to /kaggle/working/Ising-Decoding/outputs/parity_d13/stim_samples/
+Done.
+  metadata_X.json                       1,079 bytes
+  metadata_Z.json                       1,079 bytes
+  samples_X.dets                  157,213,125 bytes
+  samples_Z.dets                  157,139,683 bytes
+Done. Log: /kaggle/working/Ising-Decoding/logs/parity_d13_20261021_152106/generate_stim_data.log

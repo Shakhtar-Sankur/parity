@@ -1,0 +1,44 @@
+==========================================
+Local run
+==========================================
+workflow.task: generate_stim_data
+config: config_public
+GPUS: 1 (CUDA_VISIBLE_DEVICES=0)
+output: /kaggle/working/Ising-Decoding/outputs/parity_d5
+logs: /kaggle/working/Ising-Decoding/logs/parity_d5_20261021_150128
+overrides: hydra.run.dir=/kaggle/working/Ising-Decoding/outputs/parity_d5 distance=5 n_rounds=5
+==========================================
+[generate_stim_data] Writing Stim detector samples to /kaggle/working/Ising-Decoding/outputs/parity_d5/stim_samples for basis=['X', 'Z'], shots=262144
+Building circuit: D=5, T=5, basis=X, rotation=XV, p=0.006
+  Circuit built in 0.002s
+Building detector error model and PyMatching matcher...
+  DEM + matcher built in 0.009s
+  Detectors: 120, Observables: 1
+Sampling 262144 shots...
+  Sampled in 1.044s
+Decoding with PyMatching (baseline)...
+  Errors: 1430/262144, LER: 0.0055
+  Decode time: 0.469s (1.8 µs/shot)
+Writing outputs to /kaggle/working/Ising-Decoding/outputs/parity_d5/stim_samples/
+Done.
+  metadata_X.json                       1,076 bytes
+  metadata_Z.json                       1,074 bytes
+  samples_X.dets                    6,525,401 bytes
+  samples_Z.dets                      202,778 bytes
+Building circuit: D=5, T=5, basis=Z, rotation=XV, p=0.006
+  Circuit built in 0.002s
+Building detector error model and PyMatching matcher...
+  DEM + matcher built in 0.009s
+  Detectors: 120, Observables: 1
+Sampling 262144 shots...
+  Sampled in 1.067s
+Decoding with PyMatching (baseline)...
+  Errors: 1409/262144, LER: 0.0054
+  Decode time: 0.492s (1.9 µs/shot)
+Writing outputs to /kaggle/working/Ising-Decoding/outputs/parity_d5/stim_samples/
+Done.
+  metadata_X.json                       1,076 bytes
+  metadata_Z.json                       1,076 bytes
+  samples_X.dets                    6,525,401 bytes
+  samples_Z.dets                    6,540,387 bytes
+Done. Log: /kaggle/working/Ising-Decoding/logs/parity_d5_20261021_150128/generate_stim_data.log

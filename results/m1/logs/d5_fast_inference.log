@@ -1,0 +1,38 @@
+==========================================
+Local run
+==========================================
+workflow.task: inference
+config: config_public
+GPUS: 1 (CUDA_VISIBLE_DEVICES=0)
+output: /kaggle/working/Ising-Decoding/outputs/parity_d5
+logs: /kaggle/working/Ising-Decoding/logs/parity_d5_20261021_150141
+overrides: hydra.run.dir=/kaggle/working/Ising-Decoding/outputs/parity_d5 distance=5 n_rounds=5
+==========================================
+Loading model for task: inference
+Loading model from SafeTensors: /kaggle/working/Ising-Decoding/models/ising_decoder_surface_code_1_fast_r9_v1.0.77_fp16.safetensors
+  model_id: 1 (from SafeTensors metadata)
+  receptive_field: 9
+  dtype: fp16
+  parameters: 912,772
+[Inference] Starting Stim evaluation (may take a bit). Shots per basis: 262,144 (sharded across 1 GPU(s)); latency timing subset: 10,000 single-shot decodes.
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=5, n_rounds=5, num_samples=262144, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=X, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0020, Z:0.0020], meas=[X:0.0020, Z:0.0020], idle_cnot=[X:0.0010, Y:0.0010, Z:0.0010], idle_spam=[X:0.0020, Y:0.0020, Z:0.0020], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=0.55s (basis=X, batches=128)
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=on | channels_last_3d=on | prefetcher=on | timing=off
+Creating Stim inference datapipe: d=5, n_rounds=5, num_samples=262144, error_mode=circuit_level_surface_custom, test.noise_model=train, p_error=0.006, measure_basis=Z, code_rotation=XV
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0020, Z:0.0020], meas=[X:0.0020, Z:0.0020], idle_cnot=[X:0.0010, Y:0.0010, Z:0.0010], idle_spam=[X:0.0020, Y:0.0020, Z:0.0020], cnot_total=0.0030)
+[DEM Timing] build=0.01s decode=0.54s (basis=Z, batches=128)
+
+[Inference] d=5, n_rounds=5, noise_model=25p
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0020, Z:0.0020], meas=[X:0.0020, Z:0.0020], idle_cnot=[X:0.0010, Y:0.0010, Z:0.0010], idle_spam=[X:0.0020, Y:0.0020, Z:0.0020], cnot_total=0.0030)
+                                           No pre-decoder  After pre-decoder
+  PyMatching latency - X basis (µs/round):          1.685              1.200
+  PyMatching latency - Z basis (µs/round):          1.584              1.192
+  PyMatching latency - Avg (µs/round):              1.635              1.196
+  LER - X basis:                                 0.005455           0.004066
+  LER - Z basis:                                 0.005375           0.003811
+  LER - Avg:                                     0.005415           0.003939
+  PyMatching speedup (Avg X/Z):                     1.367x
+[Inference Summary] {"ler": {"avg_after_predecoder": 0.0039386749267578125, "avg_no_predecoder": 0.0054149627685546875, "x_basis_after_predecoder": 0.00406646728515625, "x_basis_no_predecoder": 0.00545501708984375, "z_basis_after_predecoder": 0.003810882568359375, "z_basis_no_predecoder": 0.005374908447265625}, "marker": "inference_summary", "pymatching_latency_us_per_round": {"avg_after_predecoder": 1.1956999200037899, "avg_no_predecoder": 1.634932589993241, "x_basis_after_predecoder": 1.1998538399666359, "x_basis_no_predecoder": 1.6854768400844478, "z_basis_after_predecoder": 1.191546000040944, "z_basis_no_predecoder": 1.5843883399020342}, "pymatching_speedup_avg_xz": 1.367213210935616, "schema_version": 1}
+Done. Log: /kaggle/working/Ising-Decoding/logs/parity_d5_20261021_150141/inference.log

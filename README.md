@@ -21,12 +21,12 @@ Rules the benchmark keeps:
 
 ## Status
 
-Milestone M0 is complete; M1 is next.
+Milestones M0 and M1 are complete; M2 is next.
 
 | Milestone | Scope | Status |
 |---|---|---|
 | M0 | Reproduce PyMatching 2 / Sparse Blossom ([Higgott & Gidney, arXiv:2303.15933](https://arxiv.org/abs/2303.15933)): speed at d=17, p=0.1%; logical error rates and threshold for the rotated surface code | done: scaling reproduced; threshold crossings measured; absolute speed needs comparable hardware |
-| M1 | Independent check of NVIDIA's Ising pre-decoders ([arXiv:2604.12841](https://arxiv.org/abs/2604.12841)): logical error rate and latency of pre-decoder + PyMatching against uncorrelated and correlated PyMatching alone, on identical Stim samples | next |
+| M1 | Independent check of NVIDIA's Ising pre-decoders ([arXiv:2604.12841](https://arxiv.org/abs/2604.12841)): logical error rate and latency of pre-decoder + PyMatching against uncorrelated and correlated PyMatching alone, on identical Stim samples | done: see M1 below |
 | M2 | Suite: surface, colour and qLDPC codes; PyMatching, Union-Find, Fusion Blossom, BP-OSD, Chromobius and others; public leaderboard with submissions by pull request | planned |
 
 ## M0: Sparse Blossom speed
@@ -100,6 +100,71 @@ reported as measured, not as a fitted threshold.
 
 Every number above can be regenerated with the commands in this README; the JSON files record
 the seeds, shot counts, library versions and CPU.
+
+## M1: NVIDIA Ising pre-decoders against PyMatching
+
+**With the published checkpoints, under the repository's own public test configuration, correlated
+PyMatching alone has a lower logical error rate than Ising + PyMatching at every distance from 7 to
+13, by 6× at d = 13.** The Ising Accurate pre-decoder does beat uncorrelated PyMatching at every
+distance, and makes the PyMatching step about 2× faster.
+
+NVIDIA's surface-code paper ([arXiv:2604.12841](https://arxiv.org/abs/2604.12841)) reports that its
+pre-decoder plus uncorrelated PyMatching lowers the logical error rate, and that "by training a
+larger model" it outperforms correlated PyMatching up to distance 13. This milestone checks the two
+checkpoints NVIDIA published on Hugging Face: Ising-Decoder-SurfaceCode-1-Fast (receptive field 9)
+and -Accurate (receptive field 13). Whether the paper's d = 13 comparison used one of these models
+and this noise level is not stated in the material we could check, so this is reported as what the
+published checkpoints do, not as a statement about the paper.
+
+**Setup.** Everything up to and including the pre-decoder runs through NVIDIA's own pipeline
+([NVIDIA/Ising-Decoding](https://github.com/NVIDIA/Ising-Decoding) at `ea7c1bb`, public config
+unchanged): its Stim generator writes the samples, and its inference workflow runs each pre-decoder
+and saves per-shot predictions. [`bench/m1_ising_vs_pymatching.py`](bench/m1_ising_vs_pymatching.py)
+then decodes the same shots with uncorrelated and correlated PyMatching 2.4.0, rebuilding the
+circuit with NVIDIA's own circuit and noise-model code. Rotated surface-code memory, rounds = d,
+262,144 shots per basis, NVIDIA T4 (Kaggle). Noise: the repository's 25-parameter model, which is
+uniform circuit-level depolarising noise at p = 0.003 (the sample metadata also records the
+placeholder `p_error = 0.006`, which the 25-parameter model overrides).
+
+**Checks that the inputs are identical.** For every distance and basis: the logical observables
+match NVIDIA's saved observables, our uncorrelated PyMatching predictions match NVIDIA's saved
+baseline bit for bit, and our Ising + PyMatching error rate equals the one NVIDIA's own inference
+log reports, to every printed digit ([`results/m1/m1_nvidia_logged_ler.json`](results/m1/m1_nvidia_logged_ler.json)).
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="results/m1/m1_ler_vs_distance_dark.svg">
+  <img src="results/m1/m1_ler_vs_distance_light.svg" alt="Logical error rate against code distance for four decoders; correlated PyMatching falls fastest and is lowest from d = 7">
+</picture>
+
+Logical error rate per shot, X and Z pooled (524,288 shots per cell):
+
+| d | PyMatching | Correlated PyMatching | Ising Fast + PyMatching | Ising Accurate + PyMatching | Ising Accurate + correlated PyMatching |
+|---|---|---|---|---|---|
+| 5 | 5.41e-3 | 3.45e-3 | 3.94e-3 | **3.38e-3** | 3.42e-3 |
+| 7 | 2.79e-3 | **1.20e-3** | 2.26e-3 | 1.44e-3 | 1.45e-3 |
+| 9 | 1.29e-3 | **3.74e-4** | 1.21e-3 | 6.69e-4 | 6.69e-4 |
+| 11 | 5.13e-4 | **1.20e-4** | 6.33e-4 | 3.59e-4 | 3.62e-4 |
+| 13 | 2.29e-4 | **3.05e-5** | 2.90e-4 | 1.85e-4 | 1.74e-4 |
+
+What the measurements show:
+
+- **Against uncorrelated PyMatching**, Ising Accurate lowers the logical error rate by 1.6× (d = 5),
+  1.9× (d = 7 and 9), 1.4× (d = 11) and 1.2× (d = 13). The advantage shrinks as the distance grows.
+- **Against correlated PyMatching**, Ising Accurate + PyMatching ties at d = 5 and is worse by 1.2×
+  (d = 7), 1.8× (d = 9), 3.0× (d = 11) and 6.1× (d = 13). At d = 13 that is 97 logical errors
+  against 16 in 524,288 shots, with non-overlapping 95% intervals.
+- **Ising Fast** (receptive field 9) is worse than plain PyMatching at d = 11 and 13.
+- **Combining the pre-decoder with correlated PyMatching gains nothing**: the residual it leaves is
+  decoded almost identically by both matchers.
+- **Speed.** The pre-decoder removes most detection events (108 to 1.9 per shot at d = 13), so the
+  PyMatching step runs about 2× faster (NVIDIA's log: 1.97× at d = 13; our CPU timing on Kaggle's
+  2.0 GHz Xeon: 51.9 to 21.8 µs per shot). The pre-decoder's own GPU time is not included here.
+  Correlated PyMatching is about 3× slower than uncorrelated (165.6 µs per shot at d = 13).
+
+Reproduce: run [`notebooks/m1_ising_kaggle_single_cell.py`](notebooks/m1_ising_kaggle_single_cell.py)
+in a Kaggle notebook with a T4, internet on and an `HF_TOKEN` secret with access to the two gated
+models (about 40 minutes), then `python bench/plot_m1.py`. Raw per-distance results, NVIDIA's logs
+and run provenance are in [`results/m1/`](results/m1/).
 
 ## License
 

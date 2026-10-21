@@ -1,0 +1,265 @@
+{
+  "source": "arXiv:2604.12841; github.com/NVIDIA/Ising-Decoding",
+  "bases": [
+    {
+      "basis": "X",
+      "metadata": {
+        "append_observables": true,
+        "artifact": "stim_detector_samples",
+        "basis": "X",
+        "code_rotation": "XV",
+        "distance": 11,
+        "format": "dets",
+        "n_rounds": 11,
+        "noise_model": "25-param",
+        "noise_model_params": {
+          "p_cnot_IX": 0.0002,
+          "p_cnot_IY": 0.0002,
+          "p_cnot_IZ": 0.0002,
+          "p_cnot_XI": 0.0002,
+          "p_cnot_XX": 0.0002,
+          "p_cnot_XY": 0.0002,
+          "p_cnot_XZ": 0.0002,
+          "p_cnot_YI": 0.0002,
+          "p_cnot_YX": 0.0002,
+          "p_cnot_YY": 0.0002,
+          "p_cnot_YZ": 0.0002,
+          "p_cnot_ZI": 0.0002,
+          "p_cnot_ZX": 0.0002,
+          "p_cnot_ZY": 0.0002,
+          "p_cnot_ZZ": 0.0002,
+          "p_idle_cnot_X": 0.001,
+          "p_idle_cnot_Y": 0.001,
+          "p_idle_cnot_Z": 0.001,
+          "p_idle_spam_X": 0.001996,
+          "p_idle_spam_Y": 0.001996,
+          "p_idle_spam_Z": 0.001996,
+          "p_meas_X": 0.002,
+          "p_meas_Z": 0.002,
+          "p_prep_X": 0.002,
+          "p_prep_Z": 0.002
+        },
+        "noise_model_sha256": "94753bfb8ff82aaccfb9a4bab40f1c8e1f565d05cb9c78bff8acab3389b27d7a",
+        "num_detectors": 1320,
+        "num_observables": 1,
+        "num_shots": 262144,
+        "p_error": 0.006,
+        "schema_version": 2
+      },
+      "detectors": 1320,
+      "decoders": {
+        "pymatching": {
+          "errors": 138,
+          "shots": 262144,
+          "ler": 0.00052642822265625,
+          "ci95": [
+            0.000445634311661678,
+            0.0006218610310121637
+          ],
+          "cpu_seconds_per_shot": 2.8692141307832056e-05
+        },
+        "pymatching_correlated": {
+          "errors": 36,
+          "shots": 262144,
+          "ler": 0.0001373291015625,
+          "ci95": [
+            9.920266345622087e-05,
+            0.00019010584100105938
+          ],
+          "cpu_seconds_per_shot": 8.945091284179828e-05
+        },
+        "ising_fast+pymatching": {
+          "errors": 183,
+          "shots": 262144,
+          "ler": 0.000698089599609375,
+          "ci95": [
+            0.0006040338106172846,
+            0.0008067792547991578
+          ],
+          "cpu_seconds_per_shot": 1.2706305507660318e-05
+        },
+        "ising_fast+pymatching_correlated": {
+          "errors": 175,
+          "shots": 262144,
+          "ler": 0.000667572021484375,
+          "ci95": [
+            0.0005757438949608952,
+            0.0007740349086346405
+          ],
+          "cpu_seconds_per_shot": 3.535536285781925e-05
+        },
+        "ising_accurate+pymatching": {
+          "errors": 112,
+          "shots": 262144,
+          "ler": 0.00042724609375,
+          "ci95": [
+            0.0003551193762087363,
+            0.0005140146155471585
+          ],
+          "cpu_seconds_per_shot": 1.1314372737884076e-05
+        },
+        "ising_accurate+pymatching_correlated": {
+          "errors": 113,
+          "shots": 262144,
+          "ler": 0.000431060791015625,
+          "ci95": [
+            0.00035858328331127797,
+            0.0005181799911722301
+          ],
+          "cpu_seconds_per_shot": 3.250088225173996e-05
+        }
+      },
+      "checks": {
+        "fast_observables_identical": true,
+        "fast_pymatching_baseline_identical": true,
+        "fast_mean_detection_events": {
+          "raw": 63.83236312866211,
+          "residual": 1.6826171875
+        },
+        "fast_pre_L_fraction": 0.4574089050292969,
+        "accurate_observables_identical": true,
+        "accurate_pymatching_baseline_identical": true,
+        "accurate_mean_detection_events": {
+          "raw": 63.83236312866211,
+          "residual": 1.2275466918945312
+        },
+        "accurate_pre_L_fraction": 0.4578819274902344
+      }
+    },
+    {
+      "basis": "Z",
+      "metadata": {
+        "append_observables": true,
+        "artifact": "stim_detector_samples",
+        "basis": "Z",
+        "code_rotation": "XV",
+        "distance": 11,
+        "format": "dets",
+        "n_rounds": 11,
+        "noise_model": "25-param",
+        "noise_model_params": {
+          "p_cnot_IX": 0.0002,
+          "p_cnot_IY": 0.0002,
+          "p_cnot_IZ": 0.0002,
+          "p_cnot_XI": 0.0002,
+          "p_cnot_XX": 0.0002,
+          "p_cnot_XY": 0.0002,
+          "p_cnot_XZ": 0.0002,
+          "p_cnot_YI": 0.0002,
+          "p_cnot_YX": 0.0002,
+          "p_cnot_YY": 0.0002,
+          "p_cnot_YZ": 0.0002,
+          "p_cnot_ZI": 0.0002,
+          "p_cnot_ZX": 0.0002,
+          "p_cnot_ZY": 0.0002,
+          "p_cnot_ZZ": 0.0002,
+          "p_idle_cnot_X": 0.001,
+          "p_idle_cnot_Y": 0.001,
+          "p_idle_cnot_Z": 0.001,
+          "p_idle_spam_X": 0.001996,
+          "p_idle_spam_Y": 0.001996,
+          "p_idle_spam_Z": 0.001996,
+          "p_meas_X": 0.002,
+          "p_meas_Z": 0.002,
+          "p_prep_X": 0.002,
+          "p_prep_Z": 0.002
+        },
+        "noise_model_sha256": "94753bfb8ff82aaccfb9a4bab40f1c8e1f565d05cb9c78bff8acab3389b27d7a",
+        "num_detectors": 1320,
+        "num_observables": 1,
+        "num_shots": 262144,
+        "p_error": 0.006,
+        "schema_version": 2
+      },
+      "detectors": 1320,
+      "decoders": {
+        "pymatching": {
+          "errors": 131,
+          "shots": 262144,
+          "ler": 0.000499725341796875,
+          "ci95": [
+            0.0004211786650304276,
+            0.0005929116985501207
+          ],
+          "cpu_seconds_per_shot": 2.8364570785522486e-05
+        },
+        "pymatching_correlated": {
+          "errors": 27,
+          "shots": 262144,
+          "ler": 0.000102996826171875,
+          "ci95": [
+            7.078947045634785e-05,
+            0.00014985548945241228
+          ],
+          "cpu_seconds_per_shot": 9.289572777938966e-05
+        },
+        "ising_fast+pymatching": {
+          "errors": 149,
+          "shots": 262144,
+          "ler": 0.000568389892578125,
+          "ci95": [
+            0.00048417620792095146,
+            0.0006672412447566371
+          ],
+          "cpu_seconds_per_shot": 1.2329869491577855e-05
+        },
+        "ising_fast+pymatching_correlated": {
+          "errors": 158,
+          "shots": 262144,
+          "ler": 0.00060272216796875,
+          "ci95": [
+            0.0005158029173463155,
+            0.0007042780798797931
+          ],
+          "cpu_seconds_per_shot": 3.51131721572865e-05
+        },
+        "ising_accurate+pymatching": {
+          "errors": 76,
+          "shots": 262144,
+          "ler": 0.0002899169921875,
+          "ci95": [
+            0.00023165841893952428,
+            0.00036282139462228997
+          ],
+          "cpu_seconds_per_shot": 1.1030831501007352e-05
+        },
+        "ising_accurate+pymatching_correlated": {
+          "errors": 77,
+          "shots": 262144,
+          "ler": 0.000293731689453125,
+          "ci95": [
+            0.00023504848842238735,
+            0.00036706060786704023
+          ],
+          "cpu_seconds_per_shot": 3.127871280670172e-05
+        }
+      },
+      "checks": {
+        "fast_observables_identical": true,
+        "fast_pymatching_baseline_identical": true,
+        "fast_mean_detection_events": {
+          "raw": 63.857051849365234,
+          "residual": 1.6999626159667969
+        },
+        "fast_pre_L_fraction": 0.45574951171875,
+        "accurate_observables_identical": true,
+        "accurate_pymatching_baseline_identical": true,
+        "accurate_mean_detection_events": {
+          "raw": 63.857051849365234,
+          "residual": 1.2394752502441406
+        },
+        "accurate_pre_L_fraction": 0.45578765869140625
+      }
+    }
+  ],
+  "versions": {
+    "stim": "1.16.0",
+    "pymatching": "2.4.0",
+    "numpy": "2.1.3",
+    "python": "3.13.15"
+  },
+  "machine": {
+    "cpu": "x86_64",
+    "system": "Linux-6.18.48+-x86_64-with-glibc2.39"
+  }
+}
