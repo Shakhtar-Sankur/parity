@@ -15,8 +15,8 @@ This script rebuilds the exact Stim circuit with NVIDIA's own circuit and noise-
 straight from their files, so no GPU or torch is needed), then on the same shots decodes with:
   1. uncorrelated PyMatching on the raw detectors   (must match NVIDIA's saved baseline bit for bit)
   2. correlated PyMatching on the raw detectors
-  3. uncorrelated PyMatching on the pre-decoder residual (must match NVIDIA's saved Ising predictions)
-  4. correlated PyMatching on the pre-decoder residual
+  3. Ising + uncorrelated PyMatching: NVIDIA's own saved final predictions, (pre_L + PM(residual)) mod 2
+  4. Ising + correlated PyMatching: the same pre_L combined with correlated PyMatching on the residual
 and reports the logical error rate of each with 95% Wilson intervals, plus CPU decode time per shot.
 
     python bench/m1_ising_vs_pymatching.py --ising-repo Ising-Decoding \
@@ -119,15 +119,21 @@ def evaluate_basis(repo, samples_dir, decoded, basis):
         assert resid.shape == dets.shape, (resid.shape, dets.shape)
         res["checks"][f"{label}_mean_detection_events"] = {"raw": float(dets.sum(1).mean()),
                                                            "residual": float(resid.sum(1).mean())}
-        pred, dt = timed(lambda: m_unc.decode_batch(resid))
-        res["decoders"][f"ising_{label}+pymatching"] = {**rate(pred, obs), "cpu_seconds_per_shot": dt / len(obs)}
-        their = d / f"{basis}_ising_decoding_pymatching_predictions.npy"
-        if their.exists():
-            tp = np.load(their).astype(np.uint8).reshape(obs.shape)
-            res["checks"][f"{label}_ising_predictions_identical"] = bool(np.array_equal(tp, pred))
-        pred, dt = timed(lambda: m_cor.decode_batch(resid, enable_correlations=True))
+        # NVIDIA's final prediction is (pre_L + PyMatching(residual)) mod 2, where pre_L is the logical
+        # flip implied by the pre-decoder's own data-qubit corrections (evaluation/logical_error_rate.py).
+        # pre_L is not saved, so recover it from the saved final prediction and the same uncorrelated
+        # matcher NVIDIA uses (its baseline is bit-identical to ours, checked above).
+        final = np.load(d / f"{basis}_ising_decoding_pymatching_predictions.npy").astype(np.uint8)
+        final = final.reshape(obs.shape)
+        pm_resid, dt_unc = timed(lambda: m_unc.decode_batch(resid))
+        pre_l = final ^ np.asarray(pm_resid, dtype=np.uint8).reshape(obs.shape)
+        res["checks"][f"{label}_pre_L_fraction"] = float(pre_l.mean())
+        res["decoders"][f"ising_{label}+pymatching"] = {**rate(final, obs),
+                                                        "cpu_seconds_per_shot": dt_unc / len(obs)}
+        pm_cor_resid, dt_cor = timed(lambda: m_cor.decode_batch(resid, enable_correlations=True))
+        pred = pre_l ^ np.asarray(pm_cor_resid, dtype=np.uint8).reshape(obs.shape)
         res["decoders"][f"ising_{label}+pymatching_correlated"] = {**rate(pred, obs),
-                                                                   "cpu_seconds_per_shot": dt / len(obs)}
+                                                                   "cpu_seconds_per_shot": dt_cor / len(obs)}
     return res
 
 
